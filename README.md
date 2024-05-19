@@ -4,6 +4,9 @@ Introducing a Role-Based Access Control system designed for two distinct roles: 
 
 ## Table of Contents
 
+![photo1716106718](https://github.com/jui-kamone/Cricbuzz-Api-master/assets/118176425/bfa70296-bccf-4ed1-b321-65813f9941b3)
+
+
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
