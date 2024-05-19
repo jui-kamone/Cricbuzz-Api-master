@@ -18,30 +18,60 @@ This system is built on the Django framework with Postgres as the underlying dat
 
 To get started, install the necessary packages:
 
-bash
+Create a project Folder and clone this Repository
 
-pip install Django DjangoRestFramework Psycopg2
-Usage
-To run the application, execute the following commands:
+ ``` mkdir cricbuzz
+    cd cricbuzz
 
-bash
-Copy code
-python manage.py migrate
-python manage.py runserver
+    git clone <repository_url>
+ ```
+
+Install the dependencies
+
+```
+pip install -r requirements.txt
+```
+
+
+Configure the dbsettings schema in app/schemas.py according to the PGAdmin details of your Postgres DB.
+
+Run init__db.py to create Tables in DB:
+```
+python init_db.py
+```
+
+Run the project using uvicorn
+
+```
+    uvicorn main:app --reload
+```
+
+Run add_data.py to add some basic data:
+
+```
+python add_data.py
+```
+
 API Endpoints
 Here's a breakdown of the available API endpoints:
 
-Guest Accessible Endpoints
-```http
+
+Guest Accessible Endpoints:
+
+
+1
+```
 GET /api/matches:
+     Retrieves a list of upcoming matches.
 ```
-Retrieves a list of upcoming matches.
 
 
-```http
+2
+```
 GET /api/matches/{match_id}:
+     Retrieves details of a specific match by its ID, including the players in the squads.
 ```
-Retrieves details of a specific match by its ID, including the players in the squads.
+
 
 
 Admin Accessible Endpoints
@@ -50,41 +80,49 @@ To access these endpoints, include the Authorization header with the value "Bear
 
 Admin Authentication
 
-```http
+3
+```
 POST /api/admin/signup:
+     Allows Admin registration.
 ```
-Allows Admin registration.
 
-
-```http
+4
+```
 POST /api/admin/login:
+     Enables Admin login. Upon successful authentication, a token is provided for further requests.
 ```
-Enables Admin login. Upon successful authentication, a token is provided for further requests.
+
 
 
 Matches
-```http
-POST /api/matches:
+5
 ```
-Creates a new match by providing required parameters.
+POST /api/matches:
+     Creates a new match by providing required parameters.
+```
 
 
-```http
+6
+```
 POST /api/teams/{team_id}/squad:
+      Adds players to a team's squad.
 ``` 
-Adds players to a team's squad.
 
-```http
+
+7
+```
 POST /api/players/{player_id}/stats:
+    Retrieves statistics of a player by their ID.
 ``` 
-Retrieves statistics of a player by their ID.
 
 
 
-```http
+8
+```
 POST /api/players/addplayer:
+     Adds new players to the database.
 ``` 
-Adds new players to the database.
+
 
 
 
