@@ -18,14 +18,6 @@ This system is built on the Django framework with Postgres as the underlying dat
 
 To get started, install the necessary packages:
 
-Create a project Folder and clone this Repository
-
- ``` mkdir cricbuzz
-    cd cricbuzz
-
-    git clone <repository_url>
- ```
-
 Install the dependencies
 
 ```
