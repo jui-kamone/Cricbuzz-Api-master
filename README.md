@@ -1,119 +1,74 @@
-# Cricbuzz
+# Table of Contents
+
+- [Cricbuzz](#cricbuzz)
+  * [DataBase Design Concept](#database-design-concept)
+  * [Installation](#installation)
+  * [API Endpoints](#api-endpoints)
+
+
+# Cricbuzz API Mock
 
 Introducing a Role-Based Access Control system designed for two distinct roles: Admin and User. Users can view match information, while Admins have the additional capability to manage match and player details.
 
-## Table of Contents
+
+## DataBase Design Concept
 
 <img width="1234" alt="Screenshot 2024-05-19 at 2 34 31 PM" src="https://github.com/jui-kamone/Cricbuzz-Api-master/assets/118176425/5c955542-ece1-416e-ae09-6c63b9ed6296">
 
-
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [API Endpoints](#api-endpoints)
-
 ## Installation
 
-This system is built on the Django framework with Postgres as the underlying database.
+To get started, follow the given instructions:
 
-To get started, install the necessary packages:
-
-Install the dependencies
+### Install the dependencies
 
 ```
 pip install -r requirements.txt
 ```
 
 
-Configure the dbsettings schema in app/schemas.py according to the PGAdmin details of your Postgres DB.
+Configure the dbsettings schema in ```app/schemas.py``` according to the PGAdmin details of your Postgres DB.
 
-Run init__db.py to create Tables in DB:
+### Create Tables in Database:
+
 ```
 python init_db.py
 ```
 
-Run the project using uvicorn
+### Run the project using uvicorn
 
 ```
     uvicorn main:app --reload
 ```
 
-Run add_data.py to add some basic data:
+### Run add_data.py to add some basic data:
 
 ```
 python add_data.py
 ```
 
-API Endpoints
-Here's a breakdown of the available API endpoints:
+## API Endpoints
+API endpoints implemented:
 
+#### Public Endpoints (Open to anyone):
 
-Guest Accessible Endpoints:
+1. ```GET /api/matches:``` - Gives the list of upcoming matches.
 
+2. ```GET /api/matches/{match_id}:``` - Gives the detail of a specific match with the players in the squads.
 
-1
-```
-GET /api/matches:
-     Retrieves a list of upcoming matches.
-```
+### Private Endpoints (Admin only):
 
+>    Include the Authorization header with the value "Bearer {Token}" in your request.
 
-2
-```
-GET /api/matches/{match_id}:
-     Retrieves details of a specific match by its ID, including the players in the squads.
-```
+3. ```POST /api/admin/signup:``` - SignUp
 
+4. ``` POST /api/admin/login:``` - LogIn
 
+>    Use the token returned after login for further requests.
 
-Admin Accessible Endpoints
-Note: Admin API endpoints are protected by Token Authentication. 
-To access these endpoints, include the Authorization header with the value "Bearer {Token}".
-
-Admin Authentication
-
-3
-```
-POST /api/admin/signup:
-     Allows Admin registration.
-```
-
-4
-```
-POST /api/admin/login:
-     Enables Admin login. Upon successful authentication, a token is provided for further requests.
-```
-
-
-
-Matches
-5
-```
-POST /api/matches:
-     Creates a new match by providing required parameters.
-```
-
-
-6
-```
-POST /api/teams/{team_id}/squad:
-      Adds players to a team's squad.
-``` 
-
-
-7
-```
-POST /api/players/{player_id}/stats:
-    Retrieves statistics of a player by their ID.
-``` 
-
-
-
-8
-```
-POST /api/players/addplayer:
-     Adds new players to the database.
-``` 
+5. ``` POST /api/matches:``` -  Creates a new match.
+6. ``` POST /api/teams/{team_id}/squad:``` - Adds players to a particular team. 
+7. ``` POST /api/players/{player_id}/stats: ``` - Stats of a player.
+8. ```POST /api/players/addplayer: ``` - Adds new players.
 
 
 
